@@ -25,12 +25,11 @@ async fn main() -> Result<(), Error> {
         )
         .await?;
 
-    let mut insert_stmt = String::new();
-    for i in 0..5_000_000 {
-        insert_stmt.push_str(&format!("('{}'),", format_args!("Item {}", i)));
-    }
+    let rows: Vec<String> = (0..5_000_000)
+        .map(|i| format!("('{}')", format_args!("Item {}", i)))
+        .collect();
 
-    insert_stmt.pop();
+    let insert_stmt: String = rows.join(", ");
     client
         .execute(
             &format!("INSERT INTO test_table (name) VALUES {}", insert_stmt),
@@ -40,8 +39,8 @@ async fn main() -> Result<(), Error> {
 
     let rows = client.query("SELECT * FROM test_table", &[]).await?;
     for row in rows {
-        let id: i32 = row.get(0);
-        let name: String = row.get(1);
+        let _id: i32 = row.get(0);
+        let _name: String = row.get(1);
         // println!("Row: {} - {}", id, name);
     }
 
