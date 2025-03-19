@@ -9,9 +9,9 @@ func main() {
 	start := time.Now()
 
 	var result int
-	for i := 0; i < 1000; i++ {
-		for j := 0; j < 1000; j++ {
-			for k := 0; k < 1000; k++ {
+	for i := 0; i < 2000; i++ {
+		for j := 0; j < 2000; j++ {
+			for k := 0; k < 2000; k++ {
 				result += i * j * k
 			}
 		}
