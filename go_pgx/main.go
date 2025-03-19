@@ -36,8 +36,8 @@ func main() {
 		log.Fatalf("Failed to create table: %v", err)
 	}
 
-	rows := make([][]interface{}, 100000)
-	for i := 0; i < 100000; i++ {
+	rows := make([][]interface{}, 5000000)
+	for i := 0; i < 5000000; i++ {
 		rows[i] = []interface{}{fmt.Sprintf("Item %d", i)}
 	}
 
@@ -64,7 +64,7 @@ func main() {
 		if err != nil {
 			log.Fatalf("Failed to scan row: %v", err)
 		}
-		fmt.Println("Row:", id, name)
+		// fmt.Println("Row:", id, name)
 	}
 
 	if err = rowsResult.Err(); err != nil {
@@ -76,7 +76,7 @@ func main() {
 		log.Fatalf("Failed to delete data: %v", err)
 	}
 
-	_, err = db.Exec(context.Background(), "DROP TABLE IF EXISTS test_table CASCADE")
+	_, err = db.Exec(context.Background(), "DROP TABLE IF EXISTS test_table")
 	if err != nil {
 		log.Fatalf("Failed to drop table: %v", err)
 	}
