@@ -44,5 +44,5 @@ fn main() {
 
     let duration = start_time.elapsed();
 
-    println!("Tempo total: {:.2?}", duration);
+    println!("Tempo total: {:.9}", duration.as_secs_f64());
 }
