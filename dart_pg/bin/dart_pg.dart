@@ -6,9 +6,9 @@ void main() async {
   final conn = await Connection.open(
     Endpoint(
         host: 'localhost',
-        database: 'redepetdb',
-        username: 'redepetuser',
-        password: 'redepet123'),
+        database: 'database',
+        username: 'admin',
+        password: 'admin'),
     settings: ConnectionSettings(sslMode: SslMode.disable),
   );
 
